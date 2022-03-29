@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import morgan from "morgan"
 import path from "path"
+import router from "./routes/productos.routes"
 
 // creo una instancia de express
 const app = express()
@@ -26,12 +27,5 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"../public")))
 
 
-// ruta de prueba
-
-app.get("/products",(req, res)=>{
-    res.send("hola desde el backend")
-})
-
-app.get("/",(req, res)=>{
-    res.send("hola desde nashe");
-})
+// aqui van las rutas
+app.use("/apicafe", router)
