@@ -4,6 +4,6 @@ import productoCtrl from "../controllers/productos.controllers"
 const router = Router ()
 
 //crear la ruta
-router.route("/products").get(productoCtrl.listarProductos)
+router.route("/products").get(productoCtrl.listarProductos).post(productoCtrl.crearProducto)
 
 export default router;
