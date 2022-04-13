@@ -1,5 +1,4 @@
-import req from "express/lib/request";
-import res from "express/lib/response";
+import Producto from "../models/productos";
 
 const productoCtrl ={};
 
@@ -9,8 +8,29 @@ productoCtrl.listarProductos = (req, res)=>{
     res.send("hola desde el backend")
 }
 
-productoCtrl.crearProducto =(req,res)=>{
-    console.log(req.body)
-    res.send("voy a crear un producto")
+productoCtrl.crearProducto = async(req,res)=>{
+    try{
+        console.log(req.body)
+        // validar
+        // crear el producto en la base de datos. ponemos new Producto q es lo q importe arriba
+        const productoNuevo = new Producto({
+            productName: req.body.productName,
+            price: req.body.price,
+            urlImg: req.body.urlImg,
+            category: req.body.category
+        })
+        // para guardar este objeto en la base de datos hacemos esto 
+       await productoNuevo.save()
+    //    enviar respuesta
+    res.status(201).json({
+        mensaje: "producto creado correctamente"
+    })
+    }catch(error){
+        console.log(error)
+        // enviar codigo de error
+        res.status(404).json({
+            mensaje: "Error al intentar agregar un producto"
+        })
+    }
 }
 export default productoCtrl

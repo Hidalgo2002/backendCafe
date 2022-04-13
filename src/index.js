@@ -3,7 +3,7 @@ import cors from "cors"
 import morgan from "morgan"
 import path from "path"
 import router from "./routes/productos.routes"
-
+import "./database"
 // creo una instancia de express
 const app = express()
 
