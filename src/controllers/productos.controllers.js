@@ -13,7 +13,7 @@ productoCtrl.listarProductos = async(req, res)=>{
         console.log(error)
         // enviar codigo de error
         res.status(404).json({
-            mensaje: "Error al intentar listar los producto"
+            mensaje: "Error al intentar listar los productos"
         })
     }
 }
@@ -57,6 +57,20 @@ productoCtrl.obtenerProducto= async (req,res)=>{
         res.status(404).json({
             mensaje: "Error, no se pudo obtener el producto buscado"
         })
+    }
+}
+
+productoCtrl.editarProducto = async(req, res)=>{
+    try{
+        console.log(req.params.id)
+        console.log(req.body)
+        // agregar validacion
+        // console.log(req)
+    }catch(error){
+    console.log(error);
+    res.status(404).json({
+        mensaje:"Error al intetar editar un producto"
+    })
     }
 }
 export default productoCtrl
